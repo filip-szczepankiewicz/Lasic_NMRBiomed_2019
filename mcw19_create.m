@@ -8,30 +8,23 @@ if nargin<1
     
     dt = 1e-4;
     ttot = 60e-3;
-    tp = 8e-3;
+    tp = 10e-3;
 end
 
-
-N = round(ttot/dt);
 gmr = 26.75e7; % gamma (gyromagnetic ratio)
 B0  = 3;
 
 waveForm = 2; %1-simusoidal 2-trapezoidal
-
-ramp = Gmax/Smax; %for trapezoidal only
-
-d  = tp/(N*dt); %separation between encoding blocks (fraction of total encoding time)
 
 scale_gradient = [1 1 1]; % any 3D shape
 
 order = [1 2 3]; % to permute axes
 
 set_b = 1;
-bval = 1e9; % 564*1e6
-b = sort(scale_gradient)/sum(scale_gradient)*bval;
-
+b = sort(scale_gradient)/sum(scale_gradient);
 
 autoFindRotation = 1; % auto rotate
+
 if prod(scale_gradient) == 0
     autoFindRotation = 0;
 end
@@ -41,9 +34,11 @@ Niter = 10;
 
 
 %% Create waveform
+ramp = Gmax/Smax; %for trapezoidal only
 
+N = round(ttot/dt);
 Nhalf = round(0.5*N)+1; % up to 180
-N0 = 2*round(d/(1-d)*Nhalf); % d is fraction of T
+N0 = 2*round(tp/dt/2); % d is fraction of T
 N1 = Nhalf-N0/2; % in the waveform
 t1 = 0:dt:(N1-1)*dt; % in the waveform
 T1 = t1(end); % duration of waveform within an encoding block
@@ -120,7 +115,7 @@ gwf = g.*h / max(abs(g(:))) * Gmax;
 rf  = h;
 
 
-% gwf_plot_all(gwf, rf, dt)
+gwf_plot_all(gwf, rf, dt)
 % mcw19_plotWF(t, gwf)
 
 
