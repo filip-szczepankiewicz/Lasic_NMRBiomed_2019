@@ -15,15 +15,3 @@ cAz = cos(Az);
 vout(:,1) = conj(v3).*(sAx.*sAz + cAx.*cAz.*sAy) - conj(v2).*(cAx.*sAz - cAz.*sAx.*sAy) + cAy.*cAz.*conj(v1);
 vout(:,2) = conj(v2).*(cAx.*cAz + sAx.*sAy.*sAz) - conj(v3).*(cAz.*sAx - cAx.*sAy.*sAz) + cAy.*sAz.*conj(v1);
 vout(:,3) = cAy.*sAx.*conj(v2) - sAy.*conj(v1) + cAx.*cAy.*conj(v3);
-
-end
-
-function [V, L] = fB(q, dt)
-for i = 1:3
-    for j = 1:3
-        B(i,j) = dt*sum(q(:,i).*q(:,j));
-    end
-end
-
-[V L] = eig(B);
-end

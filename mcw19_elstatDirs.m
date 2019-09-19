@@ -1,4 +1,4 @@
-function UDSR = mcw19_elstat_dirs
+function UDSR = mcw19_elstatDirs
 % electrostatic repusion - uniform orientation by Malcolm Levitt
 
 par = [ -0.109126926451332  -0.286205517025812  -0.951933672031446  -1.935068937515610   2.830284436109598

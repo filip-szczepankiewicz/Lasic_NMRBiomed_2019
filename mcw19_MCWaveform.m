@@ -79,13 +79,14 @@ if n>-1
     
 else
     if exist('ramp','var')
-        g = ftrapez(tvec,0,T,ramp*T);
+        g = mcw19_trapez(tvec,0,T,ramp*T);
     else
-        g = fsin(tvec,0,T);
+        g = mcw19_sin(tvec,0,T);
     end
     
 end
-end
+
+
 
 
 

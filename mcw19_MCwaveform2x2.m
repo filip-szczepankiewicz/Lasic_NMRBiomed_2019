@@ -11,12 +11,12 @@ delta1 = T*delta1;
 Delta1 = delta1 + 2*ramp;
 
 %correct
-%delta2 = Delta1 - 2*ramp +(2*T - 4*Delta1 + ramp)/2 - (8*Delta1^2 - 16*Delta1*T + 4*T^2 + 4*T*ramp + ramp^2)^(1/2)/2
+delta2 = Delta1 - 2*ramp +(2*T - 4*Delta1 + ramp)/2 - (8*Delta1^2 - 16*Delta1*T + 4*T^2 + 4*T*ramp + ramp^2)^(1/2)/2;
 
 %also correct
 d = 2*(T-Delta1-delta2-2*ramp);
 Delta = Delta1+delta2+2*ramp+d;
-delta2 = -(2*Delta*ramp - 3*Delta1*ramp + 2*ramp^2 - Delta*Delta1)/(Delta - 2*Delta1 + ramp)
+delta2 = -(2*Delta*ramp - 3*Delta1*ramp + 2*ramp^2 - Delta*Delta1)/(Delta - 2*Delta1 + ramp);
 
 Delta2 = (Delta1*(Delta - ramp))/(Delta - 2*Delta1 + ramp);
 delta2 = Delta2-2*ramp;
@@ -62,6 +62,7 @@ for n = 1:length(tvec)
         g = [g 0];
     end
 end
-end
+
+
 
 

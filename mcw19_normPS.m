@@ -1,4 +1,4 @@
-function [f PS] = mcw19_normPS(F,dt,mode)
+function [f, PS] = mcw19_normPS(F,dt,mode)
 % Power Spectrum of F
 
 N = size(F,2);
@@ -67,9 +67,6 @@ for m = 1:N
             
         end
     end
-end
-
-
 end
 
 

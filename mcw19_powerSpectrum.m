@@ -1,4 +1,4 @@
-function [f PS] = mcw19_powerSpectrum(F,dt,N0,thresh,fmax)
+function [f, PS] = mcw19_powerSpectrum(F,dt,N0,thresh,fmax)
 % obtain the normalized power spectrum of F at positive frequencies
 % truncate at cumulative power < thresh
 % if fmax is supplied, truncate at fmax and ignore thresh value

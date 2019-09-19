@@ -14,8 +14,6 @@ ramp = 1.6e-3; %for trapezoidal only
 dt = 1e-4; % sampling interval
 d =  6.505e-3/(N*dt); %separation between encoding blocks (fraction of total encoding time)
 
-check_LTE = 0;
-
 % set shape - scale gradients in the initialization step
 % for 3D they can be [1 1 1], but for 2D with M-nulling they need to be [1 1 0]
 % to get required b values, post-initialization scalling is needed
@@ -32,7 +30,7 @@ bval = 1e9; % 564*1e6
 b = sort(scale_gradient)/sum(scale_gradient)*bval;
 %b = [1 1 0]; b = sort(b)/sum(b)*bval;
 
-order = [1 2 3]; % to permute order
+order = [1 2 3]; % to permute axes
 
 autoFindRotation = 1; % auto rotate
 if prod(scale_gradient) == 0
@@ -64,70 +62,57 @@ t = 0:dt:(Nhalf-1)*dt; % up to 180
 T180 = t(end);
 t = [t T180 + dt + t]';
 
-if (check_LTE)
-    
-    g_tmp1 = fMCwaveform2x2(t1,0.02,0.24);
-    
-    g(:,1) = [g_tmp1 zeros(N0,1); -fliplr(g_tmp1)];
-    
-    g(:,2) = 0*g(:,1);
-    g(:,3) = 0*g(:,1);
-    
-else
-    
-    switch M
-        case 0
-            intervals = [];
-        case 1
-            intervals = [1]/2;
-        case 2
-            intervals = [1 3]/4; % regular - even (selected by Johan)
-            %intervals = [0.1 0.9]; %[1 3]/4 Wacky 1
-            %intervals = [0.4 0.6]; %[1 3]/4 Wacky 2
-            %intervals = [0.4 0.6]; %[1 3]/4 Wacky 3
-            %intervals = [0.5 3.5]/4; %[1 3]/4 Wacky 4
-            %intervals = [1 2]/4; %[1 3]/4 Wacky 5 asymmetric in z (selected by Johan)
-            %intervals = [1 3]/4; %[1 3]/4 Wacky 6 asymmetric in xy
-            %intervals = [1 2]/8; %[1 3]/4 Wacky 7 asymmetric in z and xy
-    end
-    
-    if waveForm == 1
-        g_tmp1 = mcw19_MCWaveform(t1, M-1, intervals);
-    else
-        g_tmp1 = mcw19_MCWaveform(t1, M-1, intervals, ramp/T1);
-    end
-    
-    g(:,1) = scale_gradient(1)*[g_tmp1 zeros(1,N0) -g_tmp1];
-    
-    switch M
-        case 0
-            intervals = [1]/2;
-            
-        case 1
-            intervals = [1 3]/4;
-            
-        case 2
-            intervals = [1 3 5]/6; % regular - even (selected by Johan)
-            %intervals = [0.4 0.5 0.6]; %[1 3 5]/6 Wacky 1
-            %intervals = [0.1 0.5 0.9]; %[1 3 5]/6 Wacky 2
-            %intervals = [0.4 0.5 0.6]; %[1 3 5]/6 Wacky 3
-            %intervals = [1 3 5]/6; %[1 3 5]/6 Wacky 4
-            %intervals = [1 3 5]/6; %[1 3 5]/6 Wacky 5 (selected by Johan)
-            %intervals = [1 2 5]/6; %[1 2 5]/6 Wacky 6
-            %intervals = [1 2 5]/6; %[1 2 5]/6 Wacky 7
-            
-    end
-    
-    if waveForm == 1
-        g_tmp1 = mcw19_MCWaveform(t1, M, intervals);
-    else
-        g_tmp1 = mcw19_MCWaveform(t1, M, intervals, ramp/T1);
-    end
-    g(:,2) = scale_gradient(2)*[g_tmp1 zeros(1,N0) g_tmp1];
-    g(:,3) = scale_gradient(3)*[g_tmp1 zeros(1,N0) -g_tmp1];
-    
-    
+switch M
+    case 0
+        intervals = [];
+    case 1
+        intervals = [1]/2;
+    case 2
+        intervals = [1 3]/4; % regular - even (selected by Johan)
+        %intervals = [0.1 0.9]; %[1 3]/4 Wacky 1
+        %intervals = [0.4 0.6]; %[1 3]/4 Wacky 2
+        %intervals = [0.4 0.6]; %[1 3]/4 Wacky 3
+        %intervals = [0.5 3.5]/4; %[1 3]/4 Wacky 4
+        %intervals = [1 2]/4; %[1 3]/4 Wacky 5 asymmetric in z (selected by Johan)
+        %intervals = [1 3]/4; %[1 3]/4 Wacky 6 asymmetric in xy
+        %intervals = [1 2]/8; %[1 3]/4 Wacky 7 asymmetric in z and xy
 end
+
+if waveForm == 1
+    g_tmp1 = mcw19_MCWaveform(t1, M-1, intervals);
+else
+    g_tmp1 = mcw19_MCWaveform(t1, M-1, intervals, ramp/T1);
+end
+
+g(:,1) = scale_gradient(1)*[g_tmp1 zeros(1,N0) -g_tmp1];
+
+
+switch M
+    case 0
+        intervals = [1]/2;
+        
+    case 1
+        intervals = [1 3]/4;
+        
+    case 2
+        intervals = [1 3 5]/6; % regular - even (selected by Johan)
+        %intervals = [0.4 0.5 0.6]; %[1 3 5]/6 Wacky 1
+        %intervals = [0.1 0.5 0.9]; %[1 3 5]/6 Wacky 2
+        %intervals = [0.4 0.5 0.6]; %[1 3 5]/6 Wacky 3
+        %intervals = [1 3 5]/6; %[1 3 5]/6 Wacky 4
+        %intervals = [1 3 5]/6; %[1 3 5]/6 Wacky 5 (selected by Johan)
+        %intervals = [1 2 5]/6; %[1 2 5]/6 Wacky 6
+        %intervals = [1 2 5]/6; %[1 2 5]/6 Wacky 7
+        
+end
+
+if waveForm == 1
+    g_tmp1 = mcw19_MCWaveform(t1, M, intervals);
+else
+    g_tmp1 = mcw19_MCWaveform(t1, M, intervals, ramp/T1);
+end
+g(:,2) = scale_gradient(2)*[g_tmp1 zeros(1,N0) g_tmp1];
+g(:,3) = scale_gradient(3)*[g_tmp1 zeros(1,N0) -g_tmp1];
 
 
 h = sign(t-T180); % dephasing direction (flips after 180)
@@ -136,10 +121,9 @@ h = sign(t-T180); % dephasing direction (flips after 180)
 g = g(:,order);
 
 %adjust g for b (needs to be before final rotation!)
-if set_b%prod(sum(g)) ~= 0
-    g = mcw19_scaleG(g, b, dt);
+if set_b %prod(sum(g)) ~= 0
+    g = mcw19_scaleG(g, b, dt, gmr);
 end
-
 
 % rotate
 if autoFindRotation
@@ -150,7 +134,7 @@ if autoFindRotation
     R = mcw19_rotXYZ(Autox,Autoy,Autoz);
     g = mcw19_vectorRot(g, Autox, Autoy, Autoz);
     
-    disp(['-------------------------------------------'])
+    disp('-------------------------------------------')
     disp(['Ax = ' num2str(Autox) ' Ay = ' num2str(Autoy) ' Az = ' num2str(Autoz)])
     
 end
@@ -158,7 +142,7 @@ end
 g = mcw19_vectorRot(g, Ax, Ay, Az);
 
 % the actual gradient - not the "effective" one
-glab = g.*mcw19_repVec(h,size(g));
+glab = g.*h;
 
 
 %% Plot result

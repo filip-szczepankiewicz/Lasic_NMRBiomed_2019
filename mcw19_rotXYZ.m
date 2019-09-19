@@ -1,4 +1,4 @@
-function R = fRotXYZ(phiX,phiY,phiZ)
+function R = mcw19_rotXYZ(phiX,phiY,phiZ)
 % Rotation matrix around XYZ
 
 Rx = [1 0 0
@@ -14,7 +14,6 @@ Rz = [
     cos(phiZ) -sin(phiZ) 0
     sin(phiZ) cos(phiZ) 0
     0 0 1];
-
 
 R = Rz*Ry*Rx;
 

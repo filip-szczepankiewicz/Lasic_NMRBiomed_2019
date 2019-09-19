@@ -1,4 +1,4 @@
-function res = mcw19_vectorEulerRot(v, alpha, beta, gamma);
+function res = mcw19_vectorEulerRot(v, alpha, beta, gamma)
 % rotates a vector arround the Euler angles alpha, beta, gamma (ZYZ rotations)
 % angles or vector components can be vectors but not both
 % size(v) = 3 x N
@@ -22,5 +22,4 @@ cG = cos(gamma);
 res(:,1) = conj(v2).*(cA.*sG + cB.*cG.*sA) - conj(v1).*(sA.*sG - cA.*cB.*cG) - cG.*sB.*conj(v3);
 res(:,2) = conj(v2).*(cA.*cG - cB.*sA.*sG) - conj(v1).*(cG.*sA + cA.*cB.*sG) + sB.*sG.*conj(v3);
 res(:,3) = cB.*conj(v3) + cA.*sB.*conj(v1) + sA.*sB.*conj(v2);
-end
 
