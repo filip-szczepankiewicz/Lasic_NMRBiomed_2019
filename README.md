@@ -1,13 +1,13 @@
 ## Motion compensated b-tensor encoding for in vivo cardiac diffusion-weighted imaging
 
-Samo Lasič 1 Filip Szczepankiewicz 2,3,4 Erica Dall’Armellina 5 Arka Das 5 Christopher Kelly 5 Sven Plein 5 Jürgen E. Schneider 5,6, Markus Nilsson 2 Irvin Teh 5*
+Samo Lasič<sup>1</sup>, Filip Szczepankiewicz<sup>2,3,4</sup>, Erica Dall’Armellina<sup>5</sup>, Arka Das<sup>5</sup>, Christopher Kelly<sup>5</sup>, Sven Plein<sup>5</sup>, Jürgen E. Schneider<sup>5,6</sup>, Markus Nilsson<sup>2</sup>, Irvin Teh<sup>5</sup>*
 
-    1 Random Walk Imaging, Lund, Sweden  
-    2 Clinical Sciences, Lund University, Lund, Sweden  
-    3 Harvard Medical School, Boston, MA, United States  
-    4 Brigham and Women's Hospital, Boston, MA, United States  
-    5 Leeds Institute of Cardiovascular and Metabolic Medicine, University of Leeds, Leeds, United Kingdom  
-    6 Division of Cardiovascular Medicine, Radcliffe Department of Medicine, University of Oxford, Oxford, UK  
+1. Random Walk Imaging, Lund, Sweden  
+2. Clinical Sciences, Lund University, Lund, Sweden  
+3. Harvard Medical School, Boston, MA, United States  
+4. Brigham and Women's Hospital, Boston, MA, United States  
+5. Leeds Institute of Cardiovascular and Metabolic Medicine, University of Leeds, Leeds, United Kingdom  
+6. Division of Cardiovascular Medicine, Radcliffe Department of Medicine, University of Oxford, Oxford, UK  
 
 \*Corresponding Author:
 Irvin Teh, PhD
