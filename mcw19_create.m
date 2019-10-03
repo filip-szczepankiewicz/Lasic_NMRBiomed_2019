@@ -18,12 +18,12 @@ waveForm = 2; %1-simusoidal 2-trapezoidal
 
 scale_gradient = [1 1 1]; % any 3D shape
 
-order = [1 2 3]; % to permute axes
+order = [2 3 1]; % to permute axes
 
 set_b = 1;
 b = sort(scale_gradient)/sum(scale_gradient);
 
-autoFindRotation = 1; % auto rotate
+autoFindRotation = 0; % auto rotate
 
 if prod(scale_gradient) == 0
     autoFindRotation = 0;
@@ -115,7 +115,7 @@ gwf = g.*h / max(abs(g(:))) * Gmax;
 rf  = h;
 
 
-gwf_plot_all(gwf, rf, dt)
+% gwf_plot_all(gwf, rf, dt)
 % mcw19_plotWF(t, gwf)
 
 
