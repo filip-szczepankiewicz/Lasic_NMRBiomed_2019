@@ -53,7 +53,14 @@ switch M
         intervals = [1]/2;
     case 2
         intervals = [1 3]/4; % regular - even (selected by Johan)
+    otherwise % Filip added support for arbitrary M (can replace case if M = 0 is special)
+        intervals = (1:2:(M*2-1))/(M*2);
 end
+
+
+
+
+
 
 if waveForm == 1
     g_tmp1 = mcw19_MCWaveform(t1, M-1, intervals);
@@ -73,6 +80,9 @@ switch M
         
     case 2
         intervals = [1 3 5]/6;
+        
+    otherwise % Filip added support for arbitrary M
+        intervals = (1:2:(M*2+1))/(M*2+2);
         
 end
 
@@ -113,6 +123,9 @@ end
 %% Compile output that is compatible with the MD-dMRI framework
 gwf = g.*h / max(abs(g(:))) * Gmax;
 rf  = h;
+
+
+disp('done')
 
 
 % gwf_plot_all(gwf, rf, dt)
