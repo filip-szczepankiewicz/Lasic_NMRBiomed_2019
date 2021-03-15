@@ -6,7 +6,11 @@ B0  = 3;
 
 % M = 0; N = 380;
 % M = 1; N = 542;
-M = 2; N = 684;
+M = 1; N = 684;
+
+if M>2
+    error('Use mcw19_create instead')
+end
 
 waveForm = 2; %1-simusoidal 2-trapezoidal
 ramp = 1.6e-3; %for trapezoidal only
@@ -146,12 +150,11 @@ glab = g.*h;
 
 
 %% Plot result
-
 try
     % This plot requires the MD-dMRI framework
     % https://github.com/markus-nilsson/md-dmri
-    gwf_plot_all(g, h, dt)
+    gwf_plot_all(glab, h, dt)
     
 catch
-    mcw19_plotWF(t, g)
+    mcw19_plotWF(t, glab)
 end
