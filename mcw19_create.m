@@ -1,7 +1,7 @@
 function [gwf, rf, dt] = mcw19_create(M, Gmax, Smax, ttot, tp, dt)
 
 if nargin<1
-    M = 0;
+    M = 3;
     
     Gmax = 80e-3;
     Smax = 100;
@@ -124,12 +124,8 @@ end
 gwf = g.*h / max(abs(g(:))) * Gmax;
 rf  = h;
 
-
 disp('done')
 
-
-% gwf_plot_all(gwf, rf, dt)
-% mcw19_plotWF(t, gwf)
 
 
 
