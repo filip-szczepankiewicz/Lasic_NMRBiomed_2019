@@ -17,3 +17,8 @@ Worsley Building, Room 8.49j, Clarendon Way,
 University of Leeds, Leeds, LS2 9NL
 Tel: +44 (0) 113 343 8306  
 Email: i.teh@leeds.ac.uk
+
+### Reference
+[Lasič et al. Motion‐compensated b‐tensor encoding for in vivo cardiac diffusion‐weighted imaging. NMR in Biomedicine, 2020;33:e4213. doi: https://doi.org/10.1002/nbm.4213](https://doi.org/10.1002/nbm.4213)
+
+#### Resources related to the FWF sequence can be found at the [FWF sequence GIT repository](https://github.com/filip-szczepankiewicz/fwf_seq_resources)
